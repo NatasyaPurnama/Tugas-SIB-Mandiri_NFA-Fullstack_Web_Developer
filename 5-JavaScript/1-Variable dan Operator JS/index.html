@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 1 Variable dan Operator JavaScript</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin-top: 25px;
+            padding: 0;
+            background: #fdf2e3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: #333;
+        }
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            font-size: 16px;
+        }
+        th, td {
+            padding: 15px;
+            text-align: center;
+        }
+        th {
+            background: #31511e;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        td {
+            font-size: 14px;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+        }
+        img {
+            max-width: 180px;
+        }
+        .isi{
+            text-align: left;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th colspan="2">Rumus Luas Bangun Datar</th>
+        </tr>
+        <tr>
+            <td>
+                <img src="https://drive.google.com/thumbnail?id=1uFKA-qTWJT0hQDu81rQFQHXguXHNlY3q&sz=s8000" alt="Persegi Panjang"></td>
+            <td class="isi">
+                <script>
+                    //let digunakan untuk mendeklarasikan variabel
+                    let panjangPP = 12; //panjang persegi panjang
+                    let lebarPP = 8; //lebar persegi panjang
+
+                    //document.write digunakan untuk menampilkan output text
+                    document.write('<h2>Persegi Panjang</h2>'); //untuk menampilkan sub judul bangun datar
+                    document.write('<p><strong>Rumus:</strong> Panjang × Lebar</p>'); //untuk menampilkan rumus
+                    document.write('<h3>Contoh</h3>'); //untuk menampilkan text "contoh"
+                    document.write('<p><strong>Diketahui:</strong> Panjang = ' + panjangPP + ' cm | Lebar = ' + lebarPP + ' cm</p>'); //untuk menampilkan informasi panjang dan lebar persegi panjang
+                    //* adalah operator perkalian digunakan utuk menghitung luas persegi panjang
+                    document.write('<p><strong>Perhitungan:</strong> 12 cm x 8 cm = ' + panjangPP * lebarPP + ' cm²</p>'); //untuk menampilkan perhitungan
+                </script>
+            </td>
+        </tr>
+        <tr>
+            <td><img src="https://drive.google.com/thumbnail?id=1DQEWYz87quNqXy78TtMjJ_UQ3lpJiAc_&sz=s8000" alt="Bujur Sangkar"></td>
+            <td class="isi">
+                <script>
+                    //let digunakan untuk mendeklarasikan variabel
+                    let sisiBS = 5; //sisi bujur sangkar
+
+                    //document.write digunakan untuk menampilkan output text
+                    document.write('<h2>Bujur Sangkar</h2>'); //untuk menampilkan sub judul bangun datar
+                    document.write('<p><strong>Rumus:</strong> Sisi × Sisi</p>'); //untuk menampilkan rumus
+                    document.write('<h3>Contoh</h3>'); //untuk menampilkan text "contoh"
+                    document.write('<p><strong>Diketahui:</strong> Sisi = ' + sisiBS + ' cm</p>'); //untuk menampilkan informasi sisi bujur sangkar
+                    //* adalah operator perkalian digunakan utuk menghitung luas bujur sangkar
+                    document.write('<p><strong>Perhitungan:</strong> 5 cm x 5 cm = ' + sisiBS * sisiBS + ' cm²</p>'); //untuk menampilkan perhitungan
+                </script>
+            </td>
+        </tr>
+        <tr>
+            <td><img src="https://drive.google.com/thumbnail?id=1gAEqaREJBRg_c2Dy-Cp6fLc-3KwKY_Dl&sz=s8000" alt="Segitiga"></td>
+            <td class="isi">
+                <script>
+                    //let digunakan untuk mendeklarasikan variabel
+                    let alasSTG = 10; //alas segitiga
+                    let tinggiSTG = 6;//tingggi segitiga
+
+                    //document.write digunakan untuk menampilkan output text
+                    document.write('<h2>Segitiga</h2>'); //untuk menampilkan sub judul bangun datar
+                    document.write('<p><strong>Rumus:</strong> 1/2 x Alas × Tinggi</p>'); //untuk menampilkan rumus
+                    document.write('<h3>Contoh</h3>');//untuk menampilkan text "contoh"
+                    document.write('<p><strong>Diketahui:</strong> Alas = ' + alasSTG + ' cm | Tinggi = ' + tinggiSTG + ' cm</p>'); //untuk menampilkan informasi alas dan tinggi segitiga
+                    //* adalah operator perkalian dan / adalah operator pembagian
+                    document.write('<p><strong>Perhitungan:</strong> 1/2 x 10 cm x 6 cm = ' + (1/2) * alasSTG * tinggiSTG + ' cm²</p>'); //untuk menampilkan perhitungan
+                </script>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
