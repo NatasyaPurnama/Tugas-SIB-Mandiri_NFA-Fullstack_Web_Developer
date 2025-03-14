@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Datatables</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/2.2.2/css/dataTables.dataTables.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/buttons/3.2.2/css/buttons.dataTables.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+      article {
+        margin-left: 10px;
+        background-color: #fdf2e3;
+        border-left: 5px solid #859f3d;
+        border-right: 5px solid #859f3d;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      }
+
+      table {
+        color: #31511e;
+        align-items: center;
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 60px;
+      }
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #31511e;
+        color: white;
+      }
+      tr:hover {
+        background-color: #859f3d;
+        transition: 0.3s;
+        color: white;
+      }
+
+      .box {
+        text-align: center;
+        font-weight: bold;
+        padding: 20px;
+        color: #31511e;
+      }
+      header {
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+      aside {
+        background: #fdf2e3;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        padding: 15px;
+      }
+      aside ul {
+        font-size: 14px;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        padding-left: 0;
+      }
+      aside li {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: #f1bd54;
+        padding: 8px;
+        border-radius: 8px;
+        transition: 0.3s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      aside img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #31511e;
+      }
+      aside ul li a {
+        text-decoration: none;
+        font-weight: bold;
+        color: #333;
+      }
+      aside li:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px #31511e;
+      }
+      fieldset {
+        margin-top: 16px;
+        border: 2px solid #31511e;
+        border-radius: 10px;
+        padding: 15px;
+        background: #fdf2e3;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+      }
+      legend {
+        margin-bottom: 15px;
+        text-align: center;
+        font-size: 1.5em;
+        font-weight: bold;
+        align-items: center;
+        color: white;
+        padding: 0px 5px;
+        background: #31511e;
+        border-radius: 5px;
+      }
+      .social-icon {
+        width: 35px;
+        transition: transform 0.3s ease-in-out, opacity 0.3s;
+      }
+
+      .social-icon:hover {
+        transform: scale(1.2);
+        opacity: 0.8;
+      }
+
+      footer,
+      nav {
+        border-radius: 10px;
+        background-color: #fdf2e3;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      }
+
+      .footer img {
+        width: 20px;
+      }
+
+      .nav-link {
+        color: #31511e;
+      }
+
+      .nav-link:hover,
+      .nav-link:focus {
+        background-color: #3a6836;
+        color: #fdf2e3;
+        border-radius: 50px;
+        padding: 10px 20px;
+        outline: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <header class="header">
+        <div
+          id="carouselExample"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                src="https://drive.google.com/thumbnail?id=1Gtz0rO8ChKRzpbeADLwQImUwJa01J610&sz=s8000"
+                class="d-block w-100"
+                alt="Banner 1"
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="https://drive.google.com/thumbnail?id=1Gtz0rO8ChKRzpbeADLwQImUwJa01J610&sz=s8000"
+                class="d-block w-100"
+                alt="Banner 2"
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="https://drive.google.com/thumbnail?id=1Gtz0rO8ChKRzpbeADLwQImUwJa01J610&sz=s8000"
+                class="d-block w-100"
+                alt="Banner 3"
+              />
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExample"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExample"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          </button>
+        </div>
+      </header>
+
+      <nav class="row p-3 m-0 nav">
+        <div class="col-2">
+          <a href="https://nfacademy.id" target="_blank"
+            ><img src="logo.png" alt="Logo" class="img-fluid" width="50px"
+          /></a>
+        </div>
+        <div class="col-10">
+          <ul class="nav justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link" href="home.html" target="_self">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="study.html" target="_self">MyStudy</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="gallery.html" target="_self">Gallery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="datatables.html" target="_self"
+                >Datatable</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="login.html" target="_self">Login</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <main class="row mt-2 m-0">
+        <aside class="col-md-2 col-12">
+          <div class="container">
+            <fieldset>
+              <legend>Learn Space</legend>
+              <ul>
+                <li>
+                  <img
+                    src="data:image/png;base64,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"
+                    alt="NF Academy"
+                  />
+                  <a href="https://nfacademy.id" target="_blank">NF Academy</a>
+                </li>
+                <li>
+                  <img
+                    src="https://plazaindahbogor.com/wp-content/uploads/2023/12/Nurul-Fikri-Icon.png"
+                    alt="Nurul Fikri"
+                  />
+                  <a href="https://nurulfikri.ac.id/" target="_blank"
+                    >Nurul Fikri</a
+                  >
+                </li>
+                <li>
+                  <img
+                    src="https://avatars.githubusercontent.com/u/77673807?v=4"
+                    alt="W3School"
+                  />
+                  <a href="https://www.w3schools.com/" target="_blank"
+                    >W3School</a
+                  >
+                </li>
+                <li>
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBVOtPjeWtB39bOsOoOWso3HTiaEF2szC8jA&s"
+                    alt="Bootstrap"
+                  />
+                  <a
+                    href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://getbootstrap.com/&ved=2ahUKEwi-zZqG0-uLAxVYzTgGHZoXGvIQFnoECAkQAQ&usg=AOvVaw3s0qqZzEfHTiGFr9v0jCTN"
+                    target="_blank"
+                    >Bootstrap</a
+                  >
+                </li>
+                <li>
+                  <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_Vi9e07F1AHCu7v0eOzal657GthIH1hXzbQ&s"
+                    alt="GitHub"
+                  />
+                  <a href="https://github.com/" target="_blank">GitHub</a>
+                </li>
+              </ul>
+            </fieldset>
+          </div>
+        </aside>
+
+        <article class="col-md box">
+          <table id="DataTable" class="display" style="width: 100%">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Age</th>
+                <th>Start date</th>
+                <th>Salary</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Tiger Nixon</td>
+                <td>System Architect</td>
+                <td>Edinburgh</td>
+                <td>61</td>
+                <td>2011-04-25</td>
+                <td>$320,800</td>
+              </tr>
+              <tr>
+                <td>Garrett Winters</td>
+                <td>Accountant</td>
+                <td>Tokyo</td>
+                <td>63</td>
+                <td>2011-07-25</td>
+                <td>$170,750</td>
+              </tr>
+              <tr>
+                <td>Ashton Cox</td>
+                <td>Junior Technical Author</td>
+                <td>San Francisco</td>
+                <td>66</td>
+                <td>2009-01-12</td>
+                <td>$86,000</td>
+              </tr>
+              <tr>
+                <td>Cedric Kelly</td>
+                <td>Senior Javascript Developer</td>
+                <td>Edinburgh</td>
+                <td>22</td>
+                <td>2012-03-29</td>
+                <td>$433,060</td>
+              </tr>
+              <tr>
+                <td>Airi Satou</td>
+                <td>Accountant</td>
+                <td>Tokyo</td>
+                <td>33</td>
+                <td>2008-11-28</td>
+                <td>$162,700</td>
+              </tr>
+              <tr>
+                <td>Brielle Williamson</td>
+                <td>Integration Specialist</td>
+                <td>New York</td>
+                <td>61</td>
+                <td>2012-12-02</td>
+                <td>$372,000</td>
+              </tr>
+              <tr>
+                <td>Herrod Chandler</td>
+                <td>Sales Assistant</td>
+                <td>San Francisco</td>
+                <td>59</td>
+                <td>2012-08-06</td>
+                <td>$137,500</td>
+              </tr>
+              <tr>
+                <td>Rhona Davidson</td>
+                <td>Integration Specialist</td>
+                <td>Tokyo</td>
+                <td>55</td>
+                <td>2010-10-14</td>
+                <td>$327,900</td>
+              </tr>
+              <tr>
+                <td>Colleen Hurst</td>
+                <td>Javascript Developer</td>
+                <td>San Francisco</td>
+                <td>39</td>
+                <td>2009-09-15</td>
+                <td>$205,500</td>
+              </tr>
+              <tr>
+                <td>Sonya Frost</td>
+                <td>Software Engineer</td>
+                <td>Edinburgh</td>
+                <td>23</td>
+                <td>2008-12-13</td>
+                <td>$103,600</td>
+              </tr>
+              <tr>
+                <td>Jena Gaines</td>
+                <td>Office Manager</td>
+                <td>London</td>
+                <td>30</td>
+                <td>2008-12-19</td>
+                <td>$90,560</td>
+              </tr>
+              <tr>
+                <td>Quinn Flynn</td>
+                <td>Support Lead</td>
+                <td>Edinburgh</td>
+                <td>22</td>
+                <td>2013-03-03</td>
+                <td>$342,000</td>
+              </tr>
+              <tr>
+                <td>Charde Marshall</td>
+                <td>Regional Director</td>
+                <td>San Francisco</td>
+                <td>36</td>
+                <td>2008-10-16</td>
+                <td>$470,600</td>
+              </tr>
+              <tr>
+                <td>Haley Kennedy</td>
+                <td>Senior Marketing Designer</td>
+                <td>London</td>
+                <td>43</td>
+                <td>2012-12-18</td>
+                <td>$313,500</td>
+              </tr>
+              <tr>
+                <td>Tatyana Fitzpatrick</td>
+                <td>Regional Director</td>
+                <td>London</td>
+                <td>19</td>
+                <td>2010-03-17</td>
+                <td>$385,750</td>
+              </tr>
+              <tr>
+                <td>Michael Silva</td>
+                <td>Marketing Designer</td>
+                <td>London</td>
+                <td>66</td>
+                <td>2012-11-27</td>
+                <td>$198,500</td>
+              </tr>
+              <tr>
+                <td>Paul Byrd</td>
+                <td>Chief Financial Officer (CFO)</td>
+                <td>New York</td>
+                <td>64</td>
+                <td>2010-06-09</td>
+                <td>$725,000</td>
+              </tr>
+              <tr>
+                <td>Gloria Little</td>
+                <td>Systems Administrator</td>
+                <td>New York</td>
+                <td>59</td>
+                <td>2009-04-10</td>
+                <td>$237,500</td>
+              </tr>
+              <tr>
+                <td>Bradley Greer</td>
+                <td>Software Engineer</td>
+                <td>London</td>
+                <td>41</td>
+                <td>2012-10-13</td>
+                <td>$132,000</td>
+              </tr>
+              <tr>
+                <td>Dai Rios</td>
+                <td>Personnel Lead</td>
+                <td>Edinburgh</td>
+                <td>35</td>
+                <td>2012-09-26</td>
+                <td>$217,500</td>
+              </tr>
+              <tr>
+                <td>Jenette Caldwell</td>
+                <td>Development Lead</td>
+                <td>New York</td>
+                <td>30</td>
+                <td>2011-09-03</td>
+                <td>$345,000</td>
+              </tr>
+              <tr>
+                <td>Yuri Berry</td>
+                <td>Chief Marketing Officer (CMO)</td>
+                <td>New York</td>
+                <td>40</td>
+                <td>2009-06-25</td>
+                <td>$675,000</td>
+              </tr>
+              <tr>
+                <td>Caesar Vance</td>
+                <td>Pre-Sales Support</td>
+                <td>New York</td>
+                <td>21</td>
+                <td>2011-12-12</td>
+                <td>$106,450</td>
+              </tr>
+              <tr>
+                <td>Doris Wilder</td>
+                <td>Sales Assistant</td>
+                <td>Sydney</td>
+                <td>23</td>
+                <td>2010-09-20</td>
+                <td>$85,600</td>
+              </tr>
+              <tr>
+                <td>Angelica Ramos</td>
+                <td>Chief Executive Officer (CEO)</td>
+                <td>London</td>
+                <td>47</td>
+                <td>2009-10-09</td>
+                <td>$1,200,000</td>
+              </tr>
+              <tr>
+                <td>Gavin Joyce</td>
+                <td>Developer</td>
+                <td>Edinburgh</td>
+                <td>42</td>
+                <td>2010-12-22</td>
+                <td>$92,575</td>
+              </tr>
+              <tr>
+                <td>Jennifer Chang</td>
+                <td>Regional Director</td>
+                <td>Singapore</td>
+                <td>28</td>
+                <td>2010-11-14</td>
+                <td>$357,650</td>
+              </tr>
+              <tr>
+                <td>Brenden Wagner</td>
+                <td>Software Engineer</td>
+                <td>San Francisco</td>
+                <td>28</td>
+                <td>2011-06-07</td>
+                <td>$206,850</td>
+              </tr>
+              <tr>
+                <td>Fiona Green</td>
+                <td>Chief Operating Officer (COO)</td>
+                <td>San Francisco</td>
+                <td>48</td>
+                <td>2010-03-11</td>
+                <td>$850,000</td>
+              </tr>
+              <tr>
+                <td>Shou Itou</td>
+                <td>Regional Marketing</td>
+                <td>Tokyo</td>
+                <td>20</td>
+                <td>2011-08-14</td>
+                <td>$163,000</td>
+              </tr>
+              <tr>
+                <td>Michelle House</td>
+                <td>Integration Specialist</td>
+                <td>Sydney</td>
+                <td>37</td>
+                <td>2011-06-02</td>
+                <td>$95,400</td>
+              </tr>
+              <tr>
+                <td>Suki Burks</td>
+                <td>Developer</td>
+                <td>London</td>
+                <td>53</td>
+                <td>2009-10-22</td>
+                <td>$114,500</td>
+              </tr>
+              <tr>
+                <td>Prescott Bartlett</td>
+                <td>Technical Author</td>
+                <td>London</td>
+                <td>27</td>
+                <td>2011-05-07</td>
+                <td>$145,000</td>
+              </tr>
+              <tr>
+                <td>Gavin Cortez</td>
+                <td>Team Leader</td>
+                <td>San Francisco</td>
+                <td>22</td>
+                <td>2008-10-26</td>
+                <td>$235,500</td>
+              </tr>
+              <tr>
+                <td>Martena Mccray</td>
+                <td>Post-Sales support</td>
+                <td>Edinburgh</td>
+                <td>46</td>
+                <td>2011-03-09</td>
+                <td>$324,050</td>
+              </tr>
+              <tr>
+                <td>Unity Butler</td>
+                <td>Marketing Designer</td>
+                <td>San Francisco</td>
+                <td>47</td>
+                <td>2009-12-09</td>
+                <td>$85,675</td>
+              </tr>
+              <tr>
+                <td>Howard Hatfield</td>
+                <td>Office Manager</td>
+                <td>San Francisco</td>
+                <td>51</td>
+                <td>2008-12-16</td>
+                <td>$164,500</td>
+              </tr>
+              <tr>
+                <td>Hope Fuentes</td>
+                <td>Secretary</td>
+                <td>San Francisco</td>
+                <td>41</td>
+                <td>2010-02-12</td>
+                <td>$109,850</td>
+              </tr>
+              <tr>
+                <td>Vivian Harrell</td>
+                <td>Financial Controller</td>
+                <td>San Francisco</td>
+                <td>62</td>
+                <td>2009-02-14</td>
+                <td>$452,500</td>
+              </tr>
+              <tr>
+                <td>Timothy Mooney</td>
+                <td>Office Manager</td>
+                <td>London</td>
+                <td>37</td>
+                <td>2008-12-11</td>
+                <td>$136,200</td>
+              </tr>
+              <tr>
+                <td>Jackson Bradshaw</td>
+                <td>Director</td>
+                <td>New York</td>
+                <td>65</td>
+                <td>2008-09-26</td>
+                <td>$645,750</td>
+              </tr>
+              <tr>
+                <td>Olivia Liang</td>
+                <td>Support Engineer</td>
+                <td>Singapore</td>
+                <td>64</td>
+                <td>2011-02-03</td>
+                <td>$234,500</td>
+              </tr>
+              <tr>
+                <td>Bruno Nash</td>
+                <td>Software Engineer</td>
+                <td>London</td>
+                <td>38</td>
+                <td>2011-05-03</td>
+                <td>$163,500</td>
+              </tr>
+              <tr>
+                <td>Sakura Yamamoto</td>
+                <td>Support Engineer</td>
+                <td>Tokyo</td>
+                <td>37</td>
+                <td>2009-08-19</td>
+                <td>$139,575</td>
+              </tr>
+              <tr>
+                <td>Thor Walton</td>
+                <td>Developer</td>
+                <td>New York</td>
+                <td>61</td>
+                <td>2013-08-11</td>
+                <td>$98,540</td>
+              </tr>
+              <tr>
+                <td>Finn Camacho</td>
+                <td>Support Engineer</td>
+                <td>San Francisco</td>
+                <td>47</td>
+                <td>2009-07-07</td>
+                <td>$87,500</td>
+              </tr>
+              <tr>
+                <td>Serge Baldwin</td>
+                <td>Data Coordinator</td>
+                <td>Singapore</td>
+                <td>64</td>
+                <td>2012-04-09</td>
+                <td>$138,575</td>
+              </tr>
+              <tr>
+                <td>Zenaida Frank</td>
+                <td>Software Engineer</td>
+                <td>New York</td>
+                <td>63</td>
+                <td>2010-01-04</td>
+                <td>$125,250</td>
+              </tr>
+              <tr>
+                <td>Zorita Serrano</td>
+                <td>Software Engineer</td>
+                <td>San Francisco</td>
+                <td>56</td>
+                <td>2012-06-01</td>
+                <td>$115,000</td>
+              </tr>
+              <tr>
+                <td>Jennifer Acosta</td>
+                <td>Junior Javascript Developer</td>
+                <td>Edinburgh</td>
+                <td>43</td>
+                <td>2013-02-01</td>
+                <td>$75,650</td>
+              </tr>
+              <tr>
+                <td>Cara Stevens</td>
+                <td>Sales Assistant</td>
+                <td>New York</td>
+                <td>46</td>
+                <td>2011-12-06</td>
+                <td>$145,600</td>
+              </tr>
+              <tr>
+                <td>Hermione Butler</td>
+                <td>Regional Director</td>
+                <td>London</td>
+                <td>47</td>
+                <td>2011-03-21</td>
+                <td>$356,250</td>
+              </tr>
+              <tr>
+                <td>Lael Greer</td>
+                <td>Systems Administrator</td>
+                <td>London</td>
+                <td>21</td>
+                <td>2009-02-27</td>
+                <td>$103,500</td>
+              </tr>
+              <tr>
+                <td>Jonas Alexander</td>
+                <td>Developer</td>
+                <td>San Francisco</td>
+                <td>30</td>
+                <td>2010-07-14</td>
+                <td>$86,500</td>
+              </tr>
+              <tr>
+                <td>Shad Decker</td>
+                <td>Regional Director</td>
+                <td>Edinburgh</td>
+                <td>51</td>
+                <td>2008-11-13</td>
+                <td>$183,000</td>
+              </tr>
+              <tr>
+                <td>Michael Bruce</td>
+                <td>Javascript Developer</td>
+                <td>Singapore</td>
+                <td>29</td>
+                <td>2011-06-27</td>
+                <td>$183,000</td>
+              </tr>
+              <tr>
+                <td>Donna Snider</td>
+                <td>Customer Support</td>
+                <td>New York</td>
+                <td>27</td>
+                <td>2011-01-25</td>
+                <td>$112,000</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Office</th>
+                <th>Age</th>
+                <th>Start date</th>
+                <th>Salary</th>
+              </tr>
+            </tfoot>
+          </table>
+          <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+          <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
+          <script src="https://cdn.datatables.net/buttons/3.2.2/js/dataTables.buttons.js"></script>
+          <script src="https://cdn.datatables.net/buttons/3.2.2/js/buttons.dataTables.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+          <script src="https://cdn.datatables.net/buttons/3.2.2/js/buttons.html5.min.js"></script>
+          <script src="https://cdn.datatables.net/buttons/3.2.2/js/buttons.print.min.js"></script>
+          <script>
+            new DataTable("#DataTable", {
+              layout: {
+                topStart: {
+                  buttons: ["copy", "csv", "excel", "pdf", "print"],
+                },
+              },
+            });
+          </script>
+        </article>
+      </main>
+
+      <footer class="text-center py-3 mt-2 m-0">
+        <div class="footer">
+          <p class="mb-2">
+            &copy; 2025
+            <strong
+              >Natasya Chesa Purnama - Universitas Trunojoyo Madura</strong
+            >
+          </p>
+          <div class="d-flex justify-content-center gap-3">
+            <a
+              href="https://www.linkedin.com/in/natasyapurnama"
+              target="_blank"
+            >
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
+                alt="LinkedIn"
+                class="social-icon"
+              />
+            </a>
+            <a
+              href="https://www.instagram.com/natasya.purnamaa"
+              target="_blank"
+            >
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png"
+                alt="Instagram"
+                class="social-icon"
+              />
+            </a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

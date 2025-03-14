@@ -1,0 +1,33 @@
+body {
+  font-family: "Times New Roman", Times, serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  background-color: #fffaec;
+}
+table {
+  border: 1px solid black;
+}
+th,
+td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+th {
+  font-weight: normal;
+  text-align: center;
+  background-color: #5d8736;
+  color: white;
+}
+td {
+  background-color: #f4ffc3;
+  color: black;
+}
+tfoot td {
+  color: white;
+  font-weight: normal;
+  background-color: #5d8736;
+  text-align: center;
+}

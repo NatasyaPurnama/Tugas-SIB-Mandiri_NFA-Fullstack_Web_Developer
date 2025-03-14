@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #f7f7f7;
+        color: #1a1a19;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        position: relative;
+      }
+      .wrapper {
+        margin-top: 20px;
+        width: 85%;
+        max-width: 1200px;
+        background-color: #fdf2e3;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        border-left: 5px solid #859f3d;
+        border-right: 5px solid #859f3d;
+        position: relative;
+      }
+      .title {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 22px;
+        font-weight: bold;
+        color: #31511e;
+        border-bottom: 2px solid #859f3d;
+        padding-bottom: 5px;
+        width: calc(100% - 60px);
+      }
+      .profile {
+        flex: 0 0 30%;
+        margin-top: 40px;
+        text-align: center;
+        background-color: #31511e;
+        color: #f6fcdf;
+        padding: 20px;
+        border-radius: 15px;
+      }
+      .profile img {
+        border-radius: 50%;
+      }
+      .info {
+        text-align: center;
+        margin-top: 20px;
+        color: #ffffff;
+      }
+      .main-content {
+        flex: 1;
+        padding-left: 40px;
+      }
+      .section-header {
+        font-size: 22px;
+        font-weight: bold;
+        color: #31511e;
+        margin-bottom: 10px;
+        border-bottom: 2px solid #859f3d;
+        padding-bottom: 5px;
+      }
+      .skills ul,
+      .hobbies ul {
+        list-style: none;
+        padding: 0;
+      }
+      .skills li,
+      .hobbies li {
+        background-color: #859f3d;
+        margin: 5px 0;
+        padding: 10px;
+        border-radius: 5px;
+        color: #ffffff;
+        font-weight: bold;
+      }
+      .social-section {
+        text-align: left;
+        margin-top: 20px;
+      }
+      .social-icons {
+        display: flex;
+        justify-content: left;
+        gap: 15px;
+        margin-top: 10px;
+      }
+      .social-icons a {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+      }
+      .social-icons img {
+        width: 100%;
+        border-radius: 15px;
+      }
+      .bio p {
+        text-align: justify;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="title">My Profile</div>
+      <div class="profile">
+        <img
+          src="https://media.licdn.com/dms/image/v2/D5603AQEBG7o-ogVfEQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1709476917851?e=1745452800&v=beta&t=kdJlon8_zFtrh24_q3Dze0ELnhsG0rUHiOXN-jvpu00"
+          alt="Profile Picture"
+          class="profile-img"
+          width="150"
+          height="150"
+        />
+        <div class="info">
+          <p><strong>Name:</strong> Natasya Chesa Purnama</p>
+          <p><strong>Place, Date of Birth:</strong> Surabaya, March 4, 2004</p>
+          <p><strong>Phone Number:</strong> +6281234567890</p>
+          <p>
+            <strong>Address:</strong> Perum. Mutiara Citra Graha Blok G6/12a,
+            Surabaya
+          </p>
+          <p><strong>University:</strong> Universitas Trunojoyo Madura</p>
+        </div>
+      </div>
+      <div class="main-content">
+        <div class="bio">
+          <h2 class="section-header" style="margin-top: 40px">Short Profile</h2>
+          <p>
+            A 6th-semester Bachelor's student in Information Systems with an
+            interest in web development and UI/UX design, focusing on creating
+            engaging and user-friendly digital experiences.
+          </p>
+        </div>
+        <div class="hobbies">
+          <h2 class="section-header">Hobbies</h2>
+          <ul>
+            <li>Reading</li>
+            <li>Sports</li>
+            <li>Traveling</li>
+          </ul>
+        </div>
+        <div class="social-section">
+          <h2 class="section-header">Social Media</h2>
+          <div class="social-icons">
+            <a href="mailto:npurnama51@gmail.com" target="MainContent">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRK87NmyYkOaLyQeW_0QsfdSnWSZYvPeqhBw&s"
+                alt="Email"
+              />
+            </a>
+            <a
+              href="http://instagram.com/natasya.purnamaa"
+              target="MainContent"
+            >
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTI1vMzUUJ_ehdNRO9v01kJqo0hNbFC9UmQaw&s"
+                alt="Instagram"
+              />
+            </a>
+            <a
+              href="http://linkedin.com/in/natasyapurnama"
+              target="MainContent"
+            >
+              <img
+                src="https://static.vecteezy.com/system/resources/previews/018/910/721/non_2x/linkedin-logo-linkedin-symbol-linkedin-icon-free-free-vector.jpg"
+                alt="LinkedIn"
+              />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

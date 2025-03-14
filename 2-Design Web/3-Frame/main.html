@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Profile</title>
+    <style>
+        frameset {
+            border: none;
+        }
+    </style>
+</head>
+<frameset rows="20%, 10%, 60%, 10%" border="0" framespacing="0">
+    <frame src="header.html" name="header" noresize scrolling="no">
+    <frame src="navigation.html" name="nav" noresize scrolling="no">
+    
+    <frameset cols="20%, 60%, 20%" border="0" framespacing="0">
+        <frame src="left.html" name="left" style="background: #f4f4f4;">
+        <frame src="home.html" name="MainContent">
+        <frame src="right.html" name="right" style="background: #f4f4f4;">
+    </frameset>
+    
+    <frame class="footer" src="footer.html" name="footer" noresize scrolling="no" border="0" style="border-radius: 15px;">
+</frameset>
+</html>
