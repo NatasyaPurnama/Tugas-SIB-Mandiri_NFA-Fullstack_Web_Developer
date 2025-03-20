@@ -23,7 +23,7 @@ class SUV extends Kendaraan {
 }
 
 // child class
-class Pickup extends Kendaraan {
+class SUV_Hybrid extends Kendaraan {
   constructor(merk, platNomor, warna) {
     super(merk, "SUV Hybrid", platNomor, warna);
   }
@@ -31,10 +31,10 @@ class Pickup extends Kendaraan {
 
 // parent class
 class Pelanggan {
-  constructor(nama, nomorTelepon) {
+  constructor(nama, nomorTelepon, kendaraanDisewa) {
     this.nama = nama;
     this.nomorTelepon = nomorTelepon;
-    this.kendaraanDisewa = null;
+    this.kendaraanDisewa = kendaraanDisewa;
   }
 
   tglSewa(kendaraan, tanggal) {
@@ -85,7 +85,7 @@ const sistem = new Sistem();
 
 const kendaraan1 = new Sedan("Toyota Camry HEV hev", "B 9999 EV", "Merah");
 const kendaraan2 = new SUV("Mazda CX-60", "L 1234 LX", "Hitam");
-const kendaraan3 = new Pickup("Lexus RX 500h", "D 5678 MB", "Biru");
+const kendaraan3 = new SUV_Hybrid("Lexus RX 500h", "D 5678 MB", "Biru");
 
 const pelanggan1 = new Pelanggan("Purnama", "08123456789");
 const pelanggan2 = new Pelanggan("Amirah", "08987654321");
