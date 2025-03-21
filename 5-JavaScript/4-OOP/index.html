@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+    <title>Sistem Manajemen Transportasi</title>
+    <style>
+      body {
+        background-color: white;
+        font-family: "Poppins", sans-serif;
+      }
+      .card {
+        max-width: 1100px;
+        width: 100%;
+        padding: 20px;
+        border-radius: 10px;
+      }
+      .table th {
+        text-align: center;
+        background-color: #31511e !important;
+        color: white;
+      }
+      .table td {
+        vertical-align: middle;
+        text-align: center;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #ddd;
+      }
+      .card {
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+  <body class="d-flex justify-content-center align-items-center">
+    <div class="card shadow p-4">
+      <div class="my-3">
+        <div class="header">
+          <h4><strong>Daftar Pelanggan yang Menyewa Kendaraan</strong></h4>
+        </div>
+        <table
+          class="table table-striped"
+          style="overflow: hidden; border-radius: 8px"
+        >
+          <thead class="thead-dark">
+            <tr>
+              <th>Nama Pelanggan</th>
+              <th>Nomor Telepon</th>
+              <th>Merk Kendaraan</th>
+              <th>Tipe</th>
+              <th>Plat Nomor</th>
+              <th>Warna</th>
+              <th>Tanggal Peminjaman</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      class Kendaraan {
+        constructor(merk, platNomor, warna) {
+          this.merk = merk;
+          this.platNomor = platNomor;
+          this.warna = warna;
+        }
+      }
+
+      class Sedan extends Kendaraan {
+        constructor(merk, platNomor, warna) {
+          super(merk, platNomor, warna);
+          this.tipe = "Sedan";
+        }
+      }
+
+      class SUV extends Kendaraan {
+        constructor(merk, platNomor, warna) {
+          super(merk, platNomor, warna);
+          this.tipe = "SUV";
+        }
+      }
+
+      class SUV_Hybrid extends Kendaraan {
+        constructor(merk, platNomor, warna) {
+          super(merk, platNomor, warna);
+          this.tipe = "SUV Hybrid";
+        }
+      }
+
+      class Pelanggan {
+        constructor(nama, nomorTelepon, kendaraan) {
+          this.nama = nama;
+          this.nomorTelepon = nomorTelepon;
+          this.kendaraan = kendaraan;
+          this.tanggalPeminjaman = null;
+        }
+
+        tglSewa(tanggal) {
+          this.tanggalPeminjaman = tanggal;
+        }
+      }
+
+      class Sistem {
+        constructor() {
+          this.pelangganList = [];
+        }
+
+        tambahPelanggan(pelanggan) {
+          this.pelangganList.push(pelanggan);
+          this.tampilkanData();
+        }
+
+        hapusPelanggan(index) {
+          this.pelangganList.splice(index, 1);
+          this.tampilkanData();
+        }
+
+        tampilkanData() {
+          const tableBody = document.getElementById("table-body");
+          tableBody.innerHTML = "";
+          this.pelangganList.forEach((p, index) => {
+            const row = `<tr>
+                <td>${p.nama}</td>
+                <td>${p.nomorTelepon}</td>
+                <td>${p.kendaraan.merk}</td>
+                <td>${p.kendaraan.tipe}</td>
+                <td>${p.kendaraan.platNomor}</td>
+                <td>${p.kendaraan.warna}</td>
+                <td>${p.tanggalPeminjaman || "Belum ditentukan"}</td>
+                <td><button class='btn btn-danger btn-sm' onclick='sistem.hapusPelanggan(${index})'><i class="fas fa-trash"></i></button></td>
+            </tr>`;
+            tableBody.innerHTML += row;
+          });
+        }
+      }
+
+      const sistem = new Sistem();
+
+      const kendaraan1 = new Sedan("Toyota Camry HEV hev", "B 9999 EV", "Merah");
+      const kendaraan2 = new SUV("Mazda CX-60", "L 1234 LX", "Hitam");
+      const kendaraan3 = new SUV_Hybrid("Lexus RX 500h", "D 5678 MB", "Biru");
+
+      const pelanggan1 = new Pelanggan("Purnama", "08123456789", kendaraan1);
+      const pelanggan2 = new Pelanggan("Amirah", "08987654321", kendaraan2);
+      const pelanggan3 = new Pelanggan("Natasya", "08567891234", kendaraan3);
+
+      pelanggan1.tglSewa("04-03-2020");
+      pelanggan2.tglSewa("06-04-2023");
+      pelanggan3.tglSewa("12-02-2024");
+
+      sistem.tambahPelanggan(pelanggan1);
+      sistem.tambahPelanggan(pelanggan2);
+      sistem.tambahPelanggan(pelanggan3);
+    </script>
+  </body>
+</html>
