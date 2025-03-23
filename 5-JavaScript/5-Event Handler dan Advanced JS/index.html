@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tugas 5 Event Handler dan Advanced JS</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+    <style>
+      body {
+        background-color: white;
+        font-family: "Poppins", sans-serif;
+      }
+      .card {
+        max-width: 800px;
+        max-height: 100vh;
+        width: 100%;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 50px;
+      }
+      .table th {
+        text-align: left;
+        background-color: #31511e !important;
+        color: white;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #ddd;
+      }
+    </style>
+  </head>
+  <body class="d-flex justify-content-center align-items-center">
+    <div class="card shadow p-4">
+      <div class="my-3">
+        <div class="header">
+          <h4>Daftar Produk</h4>
+          <button class="btn btn-success" style="background-color: #31511e" onclick="bForm()">
+            <i class="fas fa-plus"></i> Tambah Produk
+          </button>
+        </div>
+
+        <div class="card mb-3" id="form" style="display: none; margin-top: -3px;">
+          <div class="card-header d-flex justify-content-between">
+            <span>Tambah Produk</span>
+            <button class="btn btn-danger btn-sm" onclick="bForm()">
+              <i class="fas fa-times"></i> Tutup
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="row g-3">
+              <div class="col-md-4">
+                <input type="text" id="nama" class="form-control" placeholder="Nama Produk"/>
+              </div>
+              <div class="col-md-4">
+                <input type="number" id="harga" class="form-control" placeholder="Harga"/>
+              </div>
+              <div class="col-md-4">
+                <button class="btn btn-primary w-90" onclick="bTambah()"> Tambahkan</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between mb-3 mt-3">
+          <div>
+            <span>Tampilkan </span>
+            <select>
+              <option>10</option>
+              <option>25</option>
+              <option>50</option>
+            </select>
+            <span> entri</span>
+          </div>
+          <div>
+            <input id="cari" class="form-control" type="text" placeholder="Cari produk..."/>
+          </div>
+        </div>
+
+        <table class="table table-striped mt-3" style="overflow: hidden; border-radius: 8px">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nama Produk</th>
+              <th>Harga</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="table"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script>
+      // Data produk
+      let produkList = [
+        { id: 1, nama: "Ajazz AK870", harga: 1459000 },
+        { id: 2, nama: "Noir Timeless1800", harga: 1299000 },
+        { id: 3, nama: "Ajazz AK820 Pro", harga: 1050000 },
+        { id: 4, nama: "Noir Timeless82 V2", harga: 1385000 },
+        { id: 5, nama: "Ajazz Alux68", harga: 559000 },
+      ];
+
+      // Event handler
+      const eventHandler = {
+        tambahProduk: (id, nama, harga) => tambahProduk(id, nama, harga),
+        hapusProduk: (id) => hapusProduk(id),
+        tampilkanProduk: () => tampilkanProduk(),
+      };
+
+      document.getElementById("cari").addEventListener("input", tampilkanProduk);
+
+      // Menampilkan produk dengan destructuring
+      function tampilkanProduk() {
+        const keyword = document.getElementById("cari").value.toLowerCase();
+        const isitable = document.getElementById("table");
+        isitable.innerHTML = "";
+        produkList.forEach(({ id, nama, harga }) => { // penggunaan destructuring
+        if (nama.toLowerCase().includes(keyword)) {
+            let row = `<tr>
+                <td>${id}</td>
+                <td>${nama}</td>
+                <td>Rp ${harga.toLocaleString()}</td>
+                <td>
+                    <button class='btn btn-danger btn-sm' onclick='eventHandler.hapusProduk(${id})'>
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </td>
+            </tr>`;
+            isitable.innerHTML += row;
+        }
+    });
+      }
+
+      // Menambahkan produk dengan spread operator
+      function tambahProduk(id, nama, harga) {
+        if (nama && harga) {
+          produkList = [...produkList,{ id: id, nama: nama, harga: parseInt(harga) },]; // penggunaan spread operator
+
+          document.getElementById("nama").value = "";
+          document.getElementById("harga").value = "";
+
+          tampilkanProduk();
+        } else {
+          alert("Nama dan harga produk harus diisi!");
+          return;
+        }
+      }
+
+      function bForm() {
+        let form = document.getElementById("form");
+        form.style.display = form.style.display === "none" ? "block" : "none";
+      }
+
+      function bTambah() {
+        const id = produkList.length > 0 ? produkList[produkList.length - 1].id + 1 : 1;
+        const nama = document.getElementById("nama").value;
+        const harga = document.getElementById("harga").value;
+        tambahProduk(id, nama, harga);
+      }
+
+      // Menggunakan rest parameter
+      function hapusProduk(...Id) { 
+        const hapus = produkList.filter((produk) =>Id.includes(produk.id));
+
+        const konfirmasi = confirm(
+          `Apakah Anda yakin ingin menghapus produk: ${hapus.map((p) => p.nama).join(", ")}?`
+        );
+
+        if (konfirmasi) {
+          produkList = produkList.filter((produk) => !Id.includes(produk.id)); // penggunaan rest parametet
+          alert(`Produk ${hapus.map((p) => p.nama).join(", ")} telah dihapus`);
+
+          tampilkanProduk();
+        }
+      }
+
+      tampilkanProduk();
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
