@@ -105,13 +105,6 @@
         { id: 5, nama: "Ajazz Alux68", harga: 559000 },
       ];
 
-      // Event handler
-      const eventHandler = {
-        tambahProduk: (id, nama, harga) => tambahProduk(id, nama, harga),
-        hapusProduk: (id) => hapusProduk(id),
-        tampilkanProduk: () => tampilkanProduk(),
-      };
-
       document.getElementById("cari").addEventListener("input", tampilkanProduk);
 
       // Menampilkan produk dengan destructuring
@@ -126,7 +119,7 @@
                 <td>${nama}</td>
                 <td>Rp ${harga.toLocaleString()}</td>
                 <td>
-                    <button class='btn btn-danger btn-sm' onclick='eventHandler.hapusProduk(${id})'>
+                    <button class='btn btn-danger btn-sm' onclick='hapusProduk(${id})'>
                         <i class="fas fa-trash"></i>
                     </button>
                 </td>
