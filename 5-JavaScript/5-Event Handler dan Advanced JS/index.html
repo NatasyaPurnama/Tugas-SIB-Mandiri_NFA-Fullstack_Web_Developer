@@ -150,7 +150,7 @@
       }
 
       function bTambah() {
-        const id = produkList.length > 0 ? produkList[produkList.length - 1].id + 1 : 1;
+        const id = produkList.length +1;
         const nama = document.getElementById("nama").value;
         const harga = document.getElementById("harga").value;
         tambahProduk(id, nama, harga);
