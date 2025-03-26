@@ -11,7 +11,6 @@
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="JS/app.js" type="module" defer></script>
 
     <style>
       body {
@@ -150,7 +149,51 @@
       </table>
     </div>
 
-    <script>
+    <script type="module" defer>
+      import { index, store } from "./JS/controller.js";
+
+      const main = () => {
+        document.getElementById("buttonKirim").addEventListener("click", () => {
+          const nama = document.getElementById("nama").value;
+          const umur = document.getElementById("umur").value;
+          const alamat = document.getElementById("alamat").value;
+          const email = document.getElementById("email").value;
+
+          if (nama && umur && alamat && email) {
+            const userBaru = { nama, umur, alamat, email };
+            store(userBaru);
+          } else {
+            alert("Semua kolom harus diisi!");
+            return;
+          }
+
+          document.getElementById("nama").value = "";
+          document.getElementById("umur").value = "";
+          document.getElementById("alamat").value = "";
+          document.getElementById("email").value = "";
+        });
+
+        // Menampilkan data
+        index();
+
+        // Menambahkan 2 data
+        store({
+          nama: "Elon Musk",
+          umur: 52,
+          alamat: "Texas, USA",
+          email: "elon@gmail.com",
+        });
+
+        store({
+          nama: "Jeff Bezos",
+          umur: 60,
+          alamat: "Washington, USA",
+          email: "jeff@gmail.com",
+        });
+      };
+
+      main();
+
       function buttonForm() {
         const form = document.getElementById("form");
         form.style.display = form.style.display === "none" ? "block" : "none";
