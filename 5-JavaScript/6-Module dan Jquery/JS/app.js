@@ -1,6 +1,4 @@
-import UserManager from "./controller.js";
-
-const userManager = new UserManager();
+import { index, store } from "./controller.js";
 
 const main = () => {
   document.getElementById("buttonKirim").addEventListener("click", () => {
@@ -9,10 +7,10 @@ const main = () => {
     const alamat = document.getElementById("alamat").value;
     const email = document.getElementById("email").value;
 
-    if(nama && umur && alamat && email){
+    if (nama && umur && alamat && email) {
       const userBaru = { nama, umur, alamat, email };
-      userManager.store(userBaru);
-    }else{
+      store(userBaru);
+    } else {
       alert("Semua kolom harus diisi!");
       return;
     }
@@ -24,17 +22,17 @@ const main = () => {
   });
 
   // Menampilkan data
-  userManager.index();
+  index();
 
   // Menambahkan 2 data
-  userManager.store({
+  store({
     nama: "Elon Musk",
     umur: 52,
     alamat: "Texas, USA",
     email: "elon@gmail.com",
   });
 
-  userManager.store({
+  store({
     nama: "Jeff Bezos",
     umur: 60,
     alamat: "Washington, USA",
