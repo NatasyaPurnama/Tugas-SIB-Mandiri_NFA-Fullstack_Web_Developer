@@ -1,26 +1,24 @@
-import { useState } from "react";
-import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router";
+import Home from "./pages/Home";
+import Books from "./pages/books";
+import Contact from "./pages/Contact";
+import Team from "./pages/Team";
+import './App.css';
 
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import Home from "./components/Home";
-import Team from "./components/Team";
-import Contact from "./components/Contact";
 
 function App() {
-  const [page, setPage] = useState("home");
-
-  const render = () => {
-    if (page === "home") return <Home />;
-    if (page === "team") return <Team />;
-    if (page === "contact") return <Contact />;
-  };
-
   return (
     <>
-      <Header goToPage={setPage} />
-      {render()}
-      <Footer goToPage={setPage} />
+      <div className="container">
+        <BrowserRouter>
+          <Routes>
+            <Route index element={<Home />} />
+            <Route path="books" element={<Books />} />
+            <Route path="Contact" element={<Contact />} />
+            <Route path="Team" element={<Team />} />
+          </Routes>
+        </BrowserRouter>
+      </div>
     </>
   );
 }

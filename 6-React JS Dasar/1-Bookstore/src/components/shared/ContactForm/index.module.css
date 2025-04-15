@@ -1,0 +1,17 @@
+.formControlinput,
+.formSelectinput,
+textarea.input {
+  background-color: #f1f1f1;
+  transition: background-color 0.3s ease;
+  color: #6c757d;
+}
+
+.formControlinput:focus,
+.formControlinput:not(:placeholder-shown),
+.formSelectinput:focus,
+.formSelectinput:valid,
+textarea.input:focus,
+textarea.input:not(:placeholder-shown) {
+  background-color: #ffffff;
+  color: #212529;
+}

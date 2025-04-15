@@ -1,0 +1,17 @@
+.navHeader{
+  color: black;
+  margin-left: 5px;
+}
+
+.navHeader:hover {
+  background-color: #03045E;
+  color: white !important;
+  border-radius: 8px;
+}
+
+.navHeader:focus,
+.navHeader.active {
+  background-color: #03045E;
+  color: white !important;
+  border-radius: 8px;
+}

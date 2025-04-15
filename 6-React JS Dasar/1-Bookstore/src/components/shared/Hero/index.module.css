@@ -1,0 +1,23 @@
+.btnPrimaryCustom {
+  background-color: #03045E;
+  color: #fff;
+  border: none;
+}
+
+.btnPrimaryCustom:hover,
+.btnPrimaryCustom:active {
+  background-color: #ffffff;
+  color: #03045E;
+  border: 1px solid #03045E;
+}
+
+.btnOutlineCustom {
+  border-color: #03045E;
+  color: #03045E;
+}
+
+.btnOutlineCustom:hover,
+.btnOutlineCustom:active {
+  background-color: #03045E;
+  color: #ffffff;
+}
