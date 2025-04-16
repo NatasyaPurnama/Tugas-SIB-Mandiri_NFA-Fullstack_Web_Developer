@@ -5,7 +5,6 @@ import Contact from "./pages/Contact";
 import Team from "./pages/Team";
 import './App.css';
 
-
 function App() {
   return (
     <>

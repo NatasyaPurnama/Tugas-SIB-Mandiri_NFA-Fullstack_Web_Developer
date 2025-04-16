@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../index.module.css";
 
-export default function Login({ onClose }) {
+export default function Login({ onClose, onLoginSuccess }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    setEmail("admin@gmail.com");
+    setPassword("admin123");
+  }, []);
+
+  const buttonSubmit = (e) => {
+    e.preventDefault();
+
+    if (email === "admin@gmail.com" && password === "admin123") {
+      const user = { name: "Admin", email};
+      onLoginSuccess(user);
+    }
+  };
+
   return (
     <div className={`modal-dialog ${styles.modalOverlay}`} role="document">
       <div className={`modal-content rounded-4 shadow ${styles.modalContent}`}>
@@ -16,13 +33,15 @@ export default function Login({ onClose }) {
         </div>
 
         <div className="modal-body p-5 pt-0">
-          <form>
+          <form onSubmit={buttonSubmit}>
             <div className="form-floating mb-3">
               <input
                 type="email"
                 className="form-control rounded-3"
                 id="floatingInput"
                 placeholder="nama@email.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <label htmlFor="floatingInput">Alamat Email</label>
             </div>
@@ -33,6 +52,8 @@ export default function Login({ onClose }) {
                 className="form-control rounded-3"
                 id="floatingPassword"
                 placeholder="Kata Sandi"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
               <label htmlFor="floatingPassword">Kata Sandi</label>
             </div>
@@ -51,9 +72,7 @@ export default function Login({ onClose }) {
 
             <div className="d-flex align-items-center my-4">
               <div className="flex-grow-1 border-top"></div>
-              <span className="mx-3 text-muted fw-bold">
-                Atau masuk dengan
-              </span>
+              <span className="mx-3 text-muted fw-bold">Atau masuk dengan</span>
               <div className="flex-grow-1 border-top"></div>
             </div>
 

@@ -1,90 +1,15 @@
 import styles from "./index.module.css";
 import { useState } from "react";
 
-export default function ProductList() {
-  // Array buku yg dijual
-  const books = [
-    {
-      id: 1,
-      title: "Bulan",
-      author: "Tere Liye",
-      image:
-        "https://firebasestorage.googleapis.com/v0/b/sriusnyoba.appspot.com/o/Project%20NF%2FReact%2Fbulann.png?alt=media&token=63706a14-42a7-49b1-b332-b37c83babd3c",
-      originalPrice: 120000,
-      discountPrice: 85000,
-    },
-    {
-      id: 2,
-      title: "Bumi",
-      author: "Tere Liye",
-      image:
-        "https://firebasestorage.googleapis.com/v0/b/sriusnyoba.appspot.com/o/Project%20NF%2FReact%2Fbumi.png?alt=media&token=e594d733-7fcc-45e7-a50d-7775e09424a5",
-      originalPrice: 95000,
-      discountPrice: 79000,
-    },
-    {
-      id: 3,
-      title: "Matahari",
-      author: "Tere Liye",
-      image:
-        "https://firebasestorage.googleapis.com/v0/b/sriusnyoba.appspot.com/o/Project%20NF%2FReact%2Fmatahari.png?alt=media&token=08ed6777-cb20-4652-91c9-bede96b577d4",
-      originalPrice: 110000,
-      discountPrice: 88000,
-    },
-    {
-      id: 4,
-      title: "Bintang",
-      author: "Tere Liye",
-      image:
-        "https://firebasestorage.googleapis.com/v0/b/sriusnyoba.appspot.com/o/Project%20NF%2FReact%2Fcover-novel-bintang-karya-tere-liye.png?alt=media&token=22bee344-ae6f-417e-83e7-dc0b6b6924f8",
-      originalPrice: 110000,
-      discountPrice: 88000,
-    },
-    {
-      id: 5,
-      title: "Kala Itu Langit Biru",
-      author: "Nur Saidah",
-      image:
-        "https://firebasestorage.googleapis.com/v0/b/sriusnyoba.appspot.com/o/Project%20NF%2FReact%2Fkala%20itu.png?alt=media&token=66853b4d-5617-4047-9225-08fba2c4cc91",
-      originalPrice: 110000,
-      discountPrice: 88000,
-    },
-    {
-      id: 6,
-      title: "Kedamaian",
-      author: "Riki Santo",
-      image:
-        "https://firebasestorage.googleapis.com/v0/b/sriusnyoba.appspot.com/o/Project%20NF%2FReact%2Fkedamaian.png?alt=media&token=b36b467b-839b-41a0-99e8-3a01dd173ba2",
-      originalPrice: 110000,
-      discountPrice: 88000,
-    },
-    {
-      id: 7,
-      title: "Lukisan Senja",
-      author: "Nur Saidah",
-      image:
-        "https://firebasestorage.googleapis.com/v0/b/sriusnyoba.appspot.com/o/Project%20NF%2FReact%2Flukisn%20senja.png?alt=media&token=ee4e86f4-bb56-4b95-a2c0-9493cd794b98",
-      originalPrice: 110000,
-      discountPrice: 88000,
-    },
-    {
-      id: 8,
-      title: "Kala Itu",
-      author: "Nur Saidah",
-      image:
-        "https://firebasestorage.googleapis.com/v0/b/sriusnyoba.appspot.com/o/Project%20NF%2FReact%2Fmoza.png?alt=media&token=375ed2cc-a09e-4953-b809-c55b1d256d22",
-      originalPrice: 110000,
-      discountPrice: 88000,
-    },
-  ];
-
-  const [liked, setLiked] = useState(Array(books.length).fill(false));
+export default function ProductList({ books }) {
+  const [liked, setLiked] = useState([]);
 
   const buttonLike = (index) => {
     const update = [...liked];
     update[index] = !update[index];
     setLiked(update);
   };
+
   return (
     <>
       <section className="py-5 text-center container">
@@ -125,9 +50,9 @@ export default function ProductList() {
         <div className="container">
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
             {books.map((book, index) => (
-              <div className="col d-flex justify-content-center" key={index}>
+              <div className="col d-flex justify-content-center" key={book.id}>
                 <div
-                  className={`card shadow-sm ${styles.card}`}
+                  className={`card ${styles.card}`}
                   style={{
                     width: "100%",
                     maxWidth: "270px",
@@ -179,10 +104,10 @@ export default function ProductList() {
                     </h5>
                     <p className="mb-2">
                       <span className="text-danger fw-bold me-2">
-                        Rp{book.discountPrice}
+                        Rp{book.discountPrice.toLocaleString()}
                       </span>
                       <span className="text-muted text-decoration-line-through">
-                        Rp{book.originalPrice}
+                        Rp{book.originalPrice.toLocaleString()}
                       </span>
                     </p>
                     <button className="btn btn-sm btn-outline-primary w-100">
