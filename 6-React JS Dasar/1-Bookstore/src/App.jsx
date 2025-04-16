@@ -4,8 +4,11 @@ import Books from "./pages/books";
 import Contact from "./pages/Contact";
 import Team from "./pages/Team";
 import './App.css';
+import AddBookForm from "./pages/Books/addBook";
+import { useState } from "react";
 
 function App() {
+  const [setBook] = useState([]);
   return (
     <>
       <div className="container">
@@ -13,6 +16,11 @@ function App() {
           <Routes>
             <Route index element={<Home />} />
             <Route path="books" element={<Books />} />
+            <Route
+              path="books/add"
+              element={<AddBookForm setBooks={setBook} />}
+            />
+
             <Route path="Contact" element={<Contact />} />
             <Route path="Team" element={<Team />} />
           </Routes>

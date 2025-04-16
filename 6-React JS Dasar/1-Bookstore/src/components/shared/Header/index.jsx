@@ -3,12 +3,19 @@ import { useState, useEffect } from "react";
 import Login from "../../../pages/auth/Login";
 import Register from "../../../pages/auth/Register";
 import styles from "./index.module.css";
+import AddBookForm from "../../../pages/Books/addBook";
 
 export default function Header() {
+  // untuk menyimpan user accoutn dengan nilai null
   const [user, setUser] = useState(null);
+  // untuk membuka/menutup modal login/masuk
   const [showLogin, setShowLogin] = useState(false);
+  // untuk membuka/menutup modal registrasi/daftar
   const [showRegistration, setShowRegistration] = useState(false);
+  // untuk membuka/menutup dropdown pada navigasi buku
   const [showProfileDropdown, profileDropDown] = useState(false);
+  // untuk membuka/menutup modal tambah buku
+  const [showAddBookModal, setShowAddBookModal] = useState(false);
 
   const openLogin = () => setShowLogin(true);
   const closeLogin = () => setShowLogin(false);
@@ -16,6 +23,10 @@ export default function Header() {
   const openRegistration = () => setShowRegistration(true);
   const closeRegistration = () => setShowRegistration(false);
 
+  const openAddBookModal = () => setShowAddBookModal(true);
+  const closeAddBookModal = () => setShowAddBookModal(false);
+
+  // untuk menyimpan login user
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     if (storedUser) {
@@ -23,6 +34,7 @@ export default function Header() {
     }
   }, []);
 
+  // untuk logout
   const buttonLogout = () => {
     setUser(null);
     profileDropDown(false);
@@ -33,11 +45,11 @@ export default function Header() {
     profileDropDown((prevState) => !prevState);
   };
 
-   const handleLoginSuccess = (userData) => {
-     setUser(userData);
-     localStorage.setItem("user", JSON.stringify(userData));
-     closeLogin();
-   };
+  const handleLoginSuccess = (userData) => {
+    setUser(userData);
+    localStorage.setItem("user", JSON.stringify(userData));
+    closeLogin();
+  };
 
   return (
     <>
@@ -57,6 +69,7 @@ export default function Header() {
                 Home
               </Link>
             </li>
+            {/* Dropwdon buku jika berhasil login sebagai admin*/}
             {user?.name === "Admin" ? (
               <li className="nav-item dropdown">
                 <span
@@ -72,21 +85,17 @@ export default function Header() {
                       Lihat Koleksi Buku
                     </Link>
                   </li>
-                  {/* Masih belum bisa menambah buku */}
+                  {/* menu untuk menambahkan buku dengan modal form tambah buku */}
                   <li>
-                    <Link className="dropdown-item">
+                    <Link className="dropdown-item" onClick={openAddBookModal}>
                       Tambah Buku
                     </Link>
                   </li>
                   <li>
-                    <Link className="dropdown-item">
-                      Edit Buku
-                    </Link>
+                    <Link className="dropdown-item">Edit Buku</Link>
                   </li>
                   <li>
-                    <Link className="dropdown-item">
-                      Hapus Buku
-                    </Link>
+                    <Link className="dropdown-item">Hapus Buku</Link>
                   </li>
                 </ul>
               </li>
@@ -115,6 +124,7 @@ export default function Header() {
           </ul>
 
           <div>
+            {/* dropdown user jika berhasil login sebagai admin */}
             {user ? (
               <div className="d-flex align-items-center">
                 <div
@@ -178,6 +188,7 @@ export default function Header() {
         <Login onClose={closeLogin} onLoginSuccess={handleLoginSuccess} />
       )}
       {showRegistration && <Register onClose={closeRegistration} />}
+      {showAddBookModal && <AddBookForm onClose={closeAddBookModal} />}
     </>
   );
 }
