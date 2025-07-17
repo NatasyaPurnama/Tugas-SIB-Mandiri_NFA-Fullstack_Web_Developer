@@ -1,7 +1,6 @@
 <h1 align="center">🎓 SIB Mandiri NF Academy - Fullstack Web Developer</h1>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Batch-2-blue?style=flat-square" />
   <img src="https://img.shields.io/badge/Role-Fullstack%20Developer-purple?style=flat-square" />
   <img src="https://img.shields.io/badge/Period-Feb--Jun%202025-orange?style=flat-square" />
 </p>
